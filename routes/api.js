@@ -29,7 +29,7 @@ var threadSchema = new Schema({
   reported: {type: Boolean, default: false },
   delete_password: String,
   replies: [replySchema],
-  replycount: Number                ///////// used for board.html display
+  replycount: {type: Number, default: 0 }             ///////// used for board.html display
 });
 var Thread = mongoose.model('Thread', threadSchema);
 var Reply = mongoose.model('Reply', replySchema);
@@ -37,6 +37,17 @@ var Reply = mongoose.model('Reply', replySchema);
 var saltRounds = 10;
 
 module.exports = function (app) {
+  
+  app.route('/api/boards')
+    .get((req,res) => {
+      Thread.find({}, (err,data) => {
+        if (err) throw err;
+        var boards = [];
+        data.forEach(x => boards.push(x.board))
+        boards = [...new Set(boards)]
+        res.json(boards)
+      })
+    });
   
   app.route('/api/threads/:board')
     // get threads from old board
@@ -48,27 +59,30 @@ module.exports = function (app) {
         .select('-delete_password -reported -replies.delete_password -replies.reported') 
         .exec((err, data) => {
           if (err) throw err;
-          data[0].replycount = data[0].replies.length;
-          data[0].replies = data[0].replies.slice(0,3);
+          data.forEach(x => {
+            x.replies = x.replies.slice(0,3);
+          })
           res.json(data);
       });
     })
   
     // new thread for old board
     .post((req,res) => {
-      var board = req.body.board;
+      var board = req.params.board;
       var text = req.body.text;
       var pass = req.body.delete_password; 
-      var hash = bcrypt.hashSync(pass, saltRounds);
-      var thread = new Thread({
-        board: board,
-        text: text,
-        delete_password: hash
-      });
-      thread.save(err => {
-        if (err) throw err;
-        res.redirect('/b/'+board+'/');
-      }); 
+      bcrypt.hash(pass, saltRounds, function(err, hash) {
+        var thread = new Thread({
+          board: board,
+          text: text,
+          delete_password: hash
+        });
+        thread.save(err => {
+          if (err) throw err;
+          res.redirect('/b/'+board+'/');
+        });
+      })
+      
     })
   
     // report thread
@@ -89,12 +103,16 @@ module.exports = function (app) {
       Thread.findByIdAndRemove(id, (err,data) => {
         if (err) throw err;
         var hash = data.delete_password;
-        if (bcrypt.compareSync(pass, hash)) {
-          res.json('success');
-        } else {
-          res.json('incorrect password');
-        }
-      });
+        bcrypt.compare(pass, hash, function(err, result) {
+          if (err) throw err;
+          if (!result) {  
+            res.json('incorrect password');
+          } else {
+            res.json('success');
+          }
+        })
+      })
+      
     })
 
   app.route('/api/replies/:board')
@@ -112,19 +130,22 @@ module.exports = function (app) {
   
     // new reply on old thread
     .post((req,res) => {
-      var board = req.body.board;
+      //var board = req.body.board;
+      var board = req.query.board;
+      console.log(req.body, req.params)
       var text = req.body.text;
       var pass = req.body.delete_password;
       var id = req.body.thread_id;
-      var hash = bcrypt.hashSync(pass, saltRounds);
-      var reply = new Reply({
-        text: text,
-        delete_password: hash
-      });
-      Thread.findByIdAndUpdate(id,{bumped_on: Date.now(), $push: { replies: { $each: [reply], $position: 0 } } }, (err,data) => {
-        if (err) throw err;
-        res.redirect('/b/'+board+'/'+id);
-      });
+      bcrypt.hash(pass, saltRounds, function(err, hash) {
+        var reply = new Reply({
+          text: text,
+          delete_password: hash
+        });
+        Thread.findByIdAndUpdate(id,{bumped_on: Date.now(), $push: { replies: { $each: [reply], $position: 0 } }, $inc: { replycount: 1 } }, (err,data) => {
+          if (err) throw err;
+          res.redirect('/b/'+board+'/'+id);
+        });
+      })
     })
   
     // report reply
@@ -150,15 +171,19 @@ module.exports = function (app) {
         if (err) throw err;
         var reply = data.replies.id(id2);
         var hash = reply.delete_password
-        if (bcrypt.compare(pass, hash)) {
-          reply.text = '[deleted]';
-          data.save(err => {
-            if (err) throw err;
-            res.json('success');
-          });
-        } else {
-          res.json('incorrect password');
-        } 
+        bcrypt.compare(pass, hash, function(err, result) {
+          if (err) throw err;
+          if (result) {
+            reply.text = '[deleted]';
+            //--data.replycount;  //depends on how one wants to see replycount
+            data.save(err => {
+              if (err) throw err;
+              res.json('success');
+            });
+          } else {
+            res.json('incorrect password');
+          }
+        })
       });
     })  
   

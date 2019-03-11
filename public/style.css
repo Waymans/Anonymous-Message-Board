@@ -1,116 +1,210 @@
-* {
-  margin: 0px;
-  padding: 0px;
+/* index */
+textarea{
+  box-sizing: border-box;
+  width: 100%;
 }
 
 body {
-  padding: 0px;
+  height: 100%;
+  margin:0;
+  font-family: 'Fahkwang', sans-serif;
+  background: black;
 }
 
-h1, .link { 
+main{
+  color: black;
+  padding-top: 20px;
+  width: 50%;
+  margin: 50px auto;
+  background: white;
+}
+
+header{
+  color:black;
+}
+
+.center { 
   text-align: center;
 }
 
-.divs {
-  display: flex;
-  justify-content: center;
+button{
+  padding: 10px;
+  border-radius: 2px;
+  border: 0px;
+  background: #333;
+  color: white;
+  font-family: 'Fahkwang', sans-serif;
+}
+button:hover{
+  cursor: pointer; 
+  box-shadow: 1px 1px 2px black;
 }
 
-.container {
-  min-width: 40%;
+.board{
+  text-align: center;
+  width: 60%;
+  margin: auto;
 }
 
-.flex {
-  display: flex; 
+@media screen and (max-width: 900px) {
+  .board, main {
+    width: 70%;
+  }
 }
 
-.row1 {
-  padding-left: 30px;
-  height: auto;
-  width: 50%;
+@media screen and (max-width: 600px) {
+  .board, main {
+    width: 80%;
+  }
 }
 
-.row2 {
-  padding: 0px;
-  height: auto;
-  width: 50%;
+.new{
+  width: 155px;
+  background: #333; 
+  margin: auto;
+  border: 1px solid white;
+  border-radius: 5px;
 }
 
-.cell {
-  height: 165px; 
+.big{
+  width: 100px; 
+}
+
+.cell{
+  display: inline-block; 
+  margin: 10px;
   padding: 10px;
 }
 
-.users {
-  padding: 20px 30px 10px 50px; 
-  line-height: 1.2em;
+/* overlay */
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(250,250,250,1);
+  z-index: 2;
+  cursor: pointer;
+  overflow-y: scroll;
 }
 
-.replies {
-  margin-left: 20px;
+#text{
+  position: relative;
+  padding: 20px 20px 10px 40px;
+  font-size: 20px;
+  color: black;
+  font-family: 'Fahkwang', sans-serif;
 }
 
-.reply {
-  border: 1px dotted black;
-  margin: 20px;
+.tables{ 
+  overflow-x: auto; 
+}
+
+table, td, th {  
+  border: 1px solid white;
+  text-align: center;
+  color: coral;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.dark {
+  background: #111;
+  border: 1px solid white;
+}
+
+th, td {
   padding: 10px;
+  background: #333;
 }
 
-.newReply {
-  margin: 10px 10px 10px 20px;
+code{
+  color: coral; 
+  background: #333;
+  padding: 2px;
+  font-size: 15px;
+}
+
+/* reply/thread */
+
+.home{
+  text-align: center;
 }
 
 .thread {
   border: 2px solid black;
-  padding: 10px;
+  padding: 0px;
   margin-bottom: 20px;
+  background: #aaa;
+}
+
+.thread1{
+  margin: 0;
+  padding: 0;
+  background: #555; 
+  color: white
+}
+
+.reply {
+  border: 1px dotted black;
+  padding: 5px 5px 5px 0px;
+  margin: 0px;
+  background: #ccc;
+  color: black;
 }
 
 .id {
-  font-size: 10.5px;
+  padding: 0;
+  margin: 0;
+  font-size: 11px;
 }
 
-#submitNewThread {
-  margin: 0px;
+.count{
+  padding: 0;
+  margin: 0;
 }
 
 .board1 {
-  padding-left: 10%;
-}
-
-.board2 {
-  width: 80%; 
+  width: 80%;
   margin: auto;
-}
-
-.main {
-  background: lightsteelblue; 
 }
 
 input { 
   border-radius: 2px; 
-  padding: 2px;
+  padding: 5px;
+  margin: 2px;
+  border: 0px;
 }
 
 .btn {
   padding: 3px; 
+  border: 0px;
+  font-family: 'Fahkwang', sans-serif;
 }
 
 .btn:hover {
   cursor: pointer;
-  box-shadow: 2px 2px 2px black;
+  box-shadow: 1px 1px 2px black;
 }
 
 .delete { 
-  background: lightcoral; 
+  background: tomato;
+  
 }
 
 .report { 
-  background: khaki; 
+  background: lemonchiffon; 
 }
 
 .submit { 
-  background: lightgreen; 
+  background: mediumspringgreen; 
 }
 
 a:hover { 
