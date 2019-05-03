@@ -2,29 +2,68 @@
 textarea{
   box-sizing: border-box;
   width: 100%;
+  text-align: center;
+  font-family: 'Fahkwang', sans-serif;
+  font-size: 14px;
+}
+
+input::placeholder, textarea::placeholder{
+  opacity: .7; 
 }
 
 body {
   height: 100%;
   margin:0;
   font-family: 'Fahkwang', sans-serif;
-  background: black;
+  background-image: url('https://images.pexels.com/photos/2098578/pexels-photo-2098578.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 main{
-  color: black;
-  padding-top: 20px;
+  color: white;
+  padding-top: 10px;
   width: 50%;
-  margin: 50px auto;
-  background: white;
+  margin: 40px auto;
+  background: transparent;
 }
 
 header{
-  color:black;
+  color: white;
 }
 
 .center { 
-  text-align: center;
+  margin-top: 0;
+  padding-top: 10px;
+}
+
+.box-o{
+  border: 2px dashed orange;
+}
+
+.center h1{
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  margin-top:0;
+  line-height: 35px;
+}
+
+.center p{
+  margin-top: 0;
+  padding-top: 0;
+  margin-bottom: 20px; 
+}
+
+.center h3{
+  font-size: 30px; 
+  margin-bottom: 0;
 }
 
 button{
@@ -46,6 +85,14 @@ button:hover{
   margin: auto;
 }
 
+.new input[type=text]{
+  width: 100%;
+  margin: 15px 0;
+  padding: 5px 0;
+  text-align: center;
+  font-family: 'Fahkwang', sans-serif;
+}
+
 @media screen and (max-width: 900px) {
   .board, main {
     width: 70%;
@@ -59,15 +106,13 @@ button:hover{
 }
 
 .new{
-  width: 155px;
-  background: #333; 
+  width: 100%;
   margin: auto;
-  border: 1px solid white;
   border-radius: 5px;
 }
 
 .big{
-  width: 100px; 
+  width: 100%; 
 }
 
 .cell{
@@ -142,7 +187,7 @@ code{
   border: 2px solid black;
   padding: 0px;
   margin-bottom: 20px;
-  background: #aaa;
+  background: #555;
 }
 
 .thread1{
@@ -152,10 +197,14 @@ code{
   color: white
 }
 
+.thread1 h3{
+  text-align: center; 
+}
+
 .reply {
   border: 1px dotted black;
-  padding: 5px 5px 5px 0px;
-  margin: 0px;
+  padding: 5px;
+  margin: 5px;
   background: #ccc;
   color: black;
 }
@@ -164,9 +213,11 @@ code{
   padding: 0;
   margin: 0;
   font-size: 11px;
+  border-top: 1px dotted black;
 }
 
 .count{
+  background: #555;
   padding: 0;
   margin: 0;
 }
@@ -179,12 +230,13 @@ code{
 input { 
   border-radius: 2px; 
   padding: 5px;
-  margin: 2px;
+  margin: 1px 0;
   border: 0px;
 }
 
 .btn {
   padding: 3px; 
+  margin: 1px 0;
   border: 0px;
   font-family: 'Fahkwang', sans-serif;
 }
@@ -204,9 +256,17 @@ input {
 }
 
 .submit { 
-  background: mediumspringgreen; 
+  background: orange; /* mediumspringgreen */ 
+}
+
+a{
+ color: orange; 
 }
 
 a:hover { 
-  color: purple
+  color: pink;
+}
+
+footer{
+  text-align: center;
 }

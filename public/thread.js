@@ -16,18 +16,18 @@ $(function() {
             // THIS IS NOT WHAT IT WOULD LOOK LIKE TO GO LIVE
             //
               var thread = ['<div class="thread">'];
-              thread.push('<div class="thread1">')
+              thread.push('<div class="thread1">');
+              thread.push('<h3>'+ele.text+'</h3>');
               thread.push('<p class="id">Created on: '+new Date(ele.created_on).toUTCString()+'</p>');
               thread.push('<form id="reportThread"><input type="hidden" name="report_id" value="'+ele._id+'"><input type="submit" value="Report" class="btn report"></form>');
               thread.push('<form id="deleteThread"><input type="hidden" value="'+ele._id+'" name="thread_id" required=""><input type="text" placeholder="password" name="delete_password" required=""><input type="submit" value="Delete" class="btn delete"></form>');
-              thread.push('<h3>'+ele.text+'</h3>');
               thread.push('</div><div>');
               ele.replies.forEach(function(rep) {
-                thread.push('<div class="reply">')
+                thread.push('<div class="reply">');
+                thread.push('<p>'+rep.text+'</p>');
                 thread.push('<p class="id">Created on: '+new Date(rep.created_on).toUTCString()+'</p>');
                 thread.push('<form id="reportReply"><input type="hidden" name="thread_id" value="'+ele._id+'"><input type="hidden" name="reply_id" value="'+rep._id+'"><input type="submit" value="Report" class="btn report"></form>');
                 thread.push('<form id="deleteReply"><input type="hidden" value="'+ele._id+'" name="thread_id" required=""><input type="hidden" value="'+rep._id+'" name="reply_id" required=""><input type="text" placeholder="password" name="delete_password" required=""><input type="submit" value="Delete" class="btn delete"></form>');
-                thread.push('<p>'+rep.text+'</p>');
                 thread.push('</div>')
               });
               thread.push('<div>')

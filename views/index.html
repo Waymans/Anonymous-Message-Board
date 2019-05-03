@@ -61,15 +61,15 @@
     </section>   
     
     <main>
-          <div class="container center" id="testui"> 
+          <div class="container center box-o home" id="testui"> 
             <header>
-              <h1>Anonymous Message Board</h1>
+              <h1>A.M.B.</h1>
             </header>
+            <p>Anonymous Message Board</p>
             <div class="button">
               <button id="on">User Stories</button>
             </div>
             <div class="board">
-              <h3>Don't see a board you like? Make a new one!</h3>
               <form action="/api/threads/test" method="post" id="newThread" class="new">
                 <input type="text" placeholder="New board" id="board1" name="board" required><br>
                 <textarea type="text" placeholder="New thread..." name="text" required></textarea><br>
@@ -80,7 +80,7 @@
             <h3>Current boards:</h3>
             <div class="board" id="boardList"></div>
       </div>
-      <footer class="center">Check out my other projects on <a href="https://github.com/waymans" target="_blank">GitHub</a>.</footer>
+      <footer>Check out my other projects on <a href="https://github.com/waymans" target="_blank">GitHub</a>.</footer>
     </main>
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"
             integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
