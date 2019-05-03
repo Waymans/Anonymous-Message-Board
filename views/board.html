@@ -10,22 +10,22 @@
     <link href="https://fonts.googleapis.com/css?family=Fahkwang" rel="stylesheet">
   </head>
   <body>
-    <main>
-    <header class="center">
-      <h1 id="boardTitle"></h1>
-    </header>
-    <form class="home" action="/" method="get">
-      <input type="submit" value="Home" class="btn big">
-    </form>
-    <div id="submitNewThread" class="board1">
-        <h3>Submit a new thread:</h3>
-        <form id="newThread" >
-          <textarea rows="8" type="text" placeholder="Thread text..." name="text" required></textarea><br>
-          <input class="input-text" type="text" placeholder="password to delete" name="delete_password" required>
-          <input class="btn submit" type="submit" value="Submit">
-        </form>
-      </div>
-    <div id="boardDisplay" class="board1"></div>
+    <main class="box-o">
+      <header class="home">
+        <h2 id="boardTitle"></h2>
+      </header>
+      <form class="home" action="/" method="get">
+        <input type="submit" value="Home" class="btn">
+      </form>
+      <div id="submitNewThread" class="board1">
+          <h3>Submit a new thread:</h3>
+          <form id="newThread" >
+            <textarea rows="2" type="text" placeholder="Thread text..." name="text" required></textarea><br>
+            <input class="input-text" type="text" placeholder="password to delete" name="delete_password" required>
+            <input class="btn submit" type="submit" value="Submit">
+          </form>
+        </div>
+      <div id="boardDisplay" class="board1"></div>
     </main>
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"
             integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
