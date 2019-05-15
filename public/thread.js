@@ -10,35 +10,43 @@ $(function() {
           data:{thread_id: currentURL[1]},
           success: function(ele)
           {
-            var boardThreads= [];
-            //
-            // THIS ARRAY SET UP IS FOR CODE READABILITIES AND TESTING!
-            // THIS IS NOT WHAT IT WOULD LOOK LIKE TO GO LIVE
-            //
-              var thread = ['<div class="thread">'];
-              thread.push('<div class="thread1">');
-              thread.push('<h3>'+ele.text+'</h3>');
-              thread.push('<p class="id">Created on: '+new Date(ele.created_on).toUTCString()+'</p>');
-              thread.push('<form id="reportThread"><input type="hidden" name="report_id" value="'+ele._id+'"><input type="submit" value="Report" class="btn report"></form>');
-              thread.push('<form id="deleteThread"><input type="hidden" value="'+ele._id+'" name="thread_id" required=""><input type="text" placeholder="password" name="delete_password" required=""><input type="submit" value="Delete" class="btn delete"></form>');
-              thread.push('</div><div>');
+            var html = ``;
+              html += `<div class="thread">
+                        <div class="thread1">
+                          <h3>${ele.text}</h3>
+                          <p class="id">Created on: ${new Date(ele.created_on).toUTCString()}</p>
+                          <form id="reportThread">
+                            <input type="hidden" name="report_id" value="${ele._id}">
+                            <input type="submit" value="Report" class="btn report"></form>
+                          <form id="deleteThread">
+                            <input type="hidden" value="${ele._id}" name="thread_id" required="">
+                            <input type="text" placeholder="password" name="delete_password" required="">
+                            <input type="submit" value="Delete" class="btn delete"></form>
+                        </div><div>`
               ele.replies.forEach(function(rep) {
-                thread.push('<div class="reply">');
-                thread.push('<p>'+rep.text+'</p>');
-                thread.push('<p class="id">Created on: '+new Date(rep.created_on).toUTCString()+'</p>');
-                thread.push('<form id="reportReply"><input type="hidden" name="thread_id" value="'+ele._id+'"><input type="hidden" name="reply_id" value="'+rep._id+'"><input type="submit" value="Report" class="btn report"></form>');
-                thread.push('<form id="deleteReply"><input type="hidden" value="'+ele._id+'" name="thread_id" required=""><input type="hidden" value="'+rep._id+'" name="reply_id" required=""><input type="text" placeholder="password" name="delete_password" required=""><input type="submit" value="Delete" class="btn delete"></form>');
-                thread.push('</div>')
+                html += `<div class="reply">
+                          <p>${rep.text}</p>
+                          <p class="id">Created on: ${new Date(rep.created_on).toUTCString()}</p>
+                          <form id="reportReply">
+                            <input type="hidden" name="thread_id" value="${ele._id}">
+                            <input type="hidden" name="reply_id" value="${rep._id}">
+                            <input type="submit" value="Report" class="btn report"></form>
+                          <form id="deleteReply">
+                            <input type="hidden" value="${ele._id}" name="thread_id" required="">
+                            <input type="hidden" value="${rep._id}" name="reply_id" required="">
+                            <input type="text" placeholder="password" name="delete_password" required="">
+                            <input type="submit" value="Delete" class="btn delete"></form>
+                        </div>`
               });
-              thread.push('<div>')
-              thread.push('<form action="/api/replies/'+currentURL[0]+'" method="post" id="newReply">');
-              thread.push('<input type="hidden" name="body" value="'+ele._id+'">');
-              thread.push('<input type="hidden" name="thread_id" value="'+ele._id+'">');
-              thread.push('<textarea rows="5" cols="80" type="text" placeholder="Quick reply..." name="text" required=""></textarea><br>');
-              thread.push('<input type="text" placeholder="password to delete" name="delete_password" required=""><input type="submit" value="Submit" class="btn submit">')
-              thread.push('</form></div></div></div>')
-              boardThreads.push(thread.join(''));
-            $('#boardDisplay').html(boardThreads.join(''));
+              html += `<div>
+                        <form action="/api/replies/${currentURL[0]}" method="post" id="newReply">
+                          <input type="hidden" name="body" value="${ele._id}">
+                          <input type="hidden" name="thread_id" value="${ele._id}">
+                          <textarea rows="5" cols="80" type="text" placeholder="Quick reply..." name="text" required=""></textarea><br>
+                          <input type="text" placeholder="password to delete" name="delete_password" required="">
+                          <input type="submit" value="Submit" class="btn submit">
+                        </form></div></div></div>`
+            $('#boardDisplay').html(html);
           }
         });    
         $('#boardDisplay').on('submit','#newReply', function(e) {
