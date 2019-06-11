@@ -1,5 +1,15 @@
-**Anonymous Message Board**
-------
+# Anonymous Message Board(AMB)
+
+## What is it?
+AMB is a message board where a user can create threads and reply anonymously. Others can view, reply to, and report threads or replies.
+
+### Stack
+AMB is made with the following:
+> ##### Back End:
+> * Express
+> * Mongoose
+> ##### Front End:
+> * jQuery
 
 ### User Stories
 
