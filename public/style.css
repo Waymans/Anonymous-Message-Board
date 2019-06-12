@@ -15,7 +15,7 @@ body {
   height: 100%;
   margin:0;
   font-family: 'Fahkwang', sans-serif;
-  background-image: url('https://images.pexels.com/photos/2098578/pexels-photo-2098578.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-image: url('https://images.pexels.com/photos/2212858/pexels-photo-2212858.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
   background-position: center;
   background-repeat: no-repeat;
   -webkit-background-size: cover;
@@ -47,17 +47,11 @@ header{
 }
 
 .center h1{
-  font-size: 60px;
+  font-size: 50px;
   font-weight: bold;
-  margin-bottom: 0;
-  padding-bottom: 0;
-  margin-top:0;
-  line-height: 35px;
 }
 
 .center p{
-  margin-top: 0;
-  padding-top: 0;
   margin-bottom: 20px; 
 }
 
@@ -119,62 +113,6 @@ button:hover{
   display: inline-block; 
   margin: 10px;
   padding: 10px;
-}
-
-/* overlay */
-#overlay {
-  position: fixed;
-  display: none;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(250,250,250,1);
-  z-index: 2;
-  cursor: pointer;
-  overflow-y: scroll;
-}
-
-#text{
-  position: relative;
-  padding: 20px 20px 10px 40px;
-  font-size: 20px;
-  color: black;
-  font-family: 'Fahkwang', sans-serif;
-}
-
-.tables{ 
-  overflow-x: auto; 
-}
-
-table, td, th {  
-  border: 1px solid white;
-  text-align: center;
-  color: coral;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-.dark {
-  background: #111;
-  border: 1px solid white;
-}
-
-th, td {
-  padding: 10px;
-  background: #333;
-}
-
-code{
-  color: coral; 
-  background: #333;
-  padding: 2px;
-  font-size: 15px;
 }
 
 /* reply/thread */

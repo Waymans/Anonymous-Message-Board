@@ -18,19 +18,4 @@ $(function() {
       $('#newThread').submit(function(){
           var board = $('#board1').val();
           $(this).attr('action', "/api/threads/" + board);
-        /*e.preventDefault();
-          $.ajax({
-            type: "POST",
-            url: url,
-            data: $(this).serialize(),
-            success: function(data) { data ? window.location = 'https://mess-board1-project.glitch.me/b/'+currentBoard+'/': null; }
-          });*/
       });
-      $('#on').click(function() {
-        $("#overlay").fadeIn();//.css('display', "block");
-        $(document.body).css('overflow', "hidden");
-      })
-      $('#overlay').click(function() {
-        $("#overlay").fadeOut();//.css('display' ,"none");
-        $(document.body).css('overflow', "auto");
-      })

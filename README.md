@@ -32,3 +32,8 @@ Most of them are still followed except for the need of inputing thread/reply_id'
   <li>I can report a reply and change it's reported value to true by sending a <b>PUT</b> request to <i>/api/replies/{board}</i> and pass along the <code>thread_id</code> &amp; <code>reply_id</code>. (Text response will be 'success')</li>
   <li>Complete functional tests that wholely test routes and pass.</li>
 </ol>
+
+|                      |              GET             |          POST          |           PUT          |                 DELETE               |
+|----------------------|:----------------------------:|-----------------------:|-----------------------:|-------------------------------------:|
+| /api/threads/{board} |      list recent threads     |     create thread      |      report thread     |      delete thread with password     |
+| /api/replies/{board} |  show all replies on thread  | create reply on thread | report reply on thread | change reply to '[delete]' on thread |
