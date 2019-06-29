@@ -19,11 +19,3 @@ $(function() {
           var board = $('#board1').val();
           $(this).attr('action', "/api/threads/" + board);
       });
-      $('#on').click(function() {
-        $("#overlay").fadeIn();
-        $(document.body).css('overflow', "hidden");
-      })
-      $('#overlay').click(function() {
-        $("#overlay").fadeOut();
-        $(document.body).css('overflow', "auto");
-      })

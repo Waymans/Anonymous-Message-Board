@@ -1,6 +1,5 @@
 'use strict';
 
-var expect = require('chai').expect;
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
@@ -120,7 +119,6 @@ module.exports = function (app) {
     // new reply on old thread
     .post((req,res) => {
       var board = req.query.board;
-      console.log(req.body, req.params)
       var text = req.body.text;
       var pass = req.body.delete_password;
       var id = req.body.thread_id;

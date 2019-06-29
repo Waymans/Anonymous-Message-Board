@@ -1,5 +1,15 @@
-**Anonymous Message Board**
-------
+# Anonymous Message Board(AMB)
+
+## What is it?
+AMB is a message board where a user can create threads and reply anonymously. Others can view, reply to, and report threads or replies.
+
+### Stack
+AMB is made with the following:
+> ##### Back End:
+> * Express
+> * Mongoose
+> ##### Front End:
+> * jQuery
 
 ### User Stories
 
@@ -22,3 +32,40 @@ Most of them are still followed except for the need of inputing thread/reply_id'
   <li>I can report a reply and change it's reported value to true by sending a <b>PUT</b> request to <i>/api/replies/{board}</i> and pass along the <code>thread_id</code> &amp; <code>reply_id</code>. (Text response will be 'success')</li>
   <li>Complete functional tests that wholely test routes and pass.</li>
 </ol>
+
+|                      |              GET             |          POST          |           PUT          |                 DELETE               |
+|----------------------|:----------------------------:|-----------------------:|-----------------------:|-------------------------------------:|
+| /api/threads/{board} |      list recent threads     |     create thread      |      report thread     |      delete thread with password     |
+| /api/replies/{board} |  show all replies on thread  | create reply on thread | report reply on thread | change reply to '[delete]' on thread |
+
+
+
+## How to use locally
+Make sure to have node and npm installed on your computer.
+
+Clone the repo.
+
+> <code>git clone https://github.com/Waymans/Anonymous-Message-Board folder-name</code>
+
+Change into the folder directory.
+
+> <code>cd folder-name</code>
+
+Install the dependencies.
+
+> <code>npm install</code>
+
+Once installed, start the server.
+
+> <code>node server</code>
+
+Open browser at:
+
+> <code>localhost:3000</code>
+
+(Optional) - To run tests:
+
+> <code>npm run tests</code>
+
+## Authors
+Waylan Hedine
