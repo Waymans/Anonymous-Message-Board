@@ -39,7 +39,6 @@ Most of them are still followed except for the need of inputing thread/reply_id'
 | /api/replies/{board} |  show all replies on thread  | create reply on thread | report reply on thread | change reply to '[delete]' on thread |
 
 
-
 ## How to use locally
 Make sure to have node and npm installed on your computer.
 
