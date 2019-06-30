@@ -1,14 +1,5 @@
-/*
-*
-*
-*       Complete the API routing below
-*
-*
-*/
-
 'use strict';
 
-var expect = require('chai').expect;
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 
@@ -87,17 +78,15 @@ module.exports = function (app) {
   
     // report thread
     .put((req,res) => {
-      //var board = req.body.board;
       var id = req.body.thread_id;
       Thread.findByIdAndUpdate(id, { $set: { reported: true } }, (err, data) => {
         if (err) throw err;
-        res.json('success');
+        res.json('Success');
       });
     })
   
     // delete thread
     .delete((req,res) => {
-      //var board = req.body.board;
       var id = req.body.thread_id;
       var pass = req.body.delete_password;
       Thread.findByIdAndRemove(id, (err,data) => {
@@ -106,9 +95,9 @@ module.exports = function (app) {
         bcrypt.compare(pass, hash, function(err, result) {
           if (err) throw err;
           if (!result) {  
-            res.json('incorrect password');
+            res.json('Incorrect password');
           } else {
-            res.json('success');
+            res.json('Success');
           }
         })
       })
@@ -118,7 +107,6 @@ module.exports = function (app) {
   app.route('/api/replies/:board')
     // get replies from old thread
     .get((req,res) => {
-      //var board = req.params.board;
       var id = req.query.thread_id;
       Thread.findOne({_id: id})
         .select('-reported -delete_password -replies.reported -replies.delete_password -replycount')
@@ -130,9 +118,7 @@ module.exports = function (app) {
   
     // new reply on old thread
     .post((req,res) => {
-      //var board = req.body.board;
       var board = req.query.board;
-      console.log(req.body, req.params)
       var text = req.body.text;
       var pass = req.body.delete_password;
       var id = req.body.thread_id;
@@ -150,14 +136,13 @@ module.exports = function (app) {
   
     // report reply
     .put((req,res) => {
-      //var board = req.body.board;
       var id1 = req.body.thread_id;
       var id2 = req.body.reply_id;
       Thread.findById(id1, (err, data) => {
         data.replies.id(id2).reported = true;
         data.save(err => {
           if (err) throw err;
-          res.json('success');
+          res.json('Success');
         })
       });
     })
@@ -178,10 +163,10 @@ module.exports = function (app) {
             //--data.replycount;  //depends on how one wants to see replycount
             data.save(err => {
               if (err) throw err;
-              res.json('success');
+              res.json('Success');
             });
           } else {
-            res.json('incorrect password');
+            res.json('Incorrect password');
           }
         })
       });

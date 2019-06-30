@@ -1,10 +1,3 @@
-/*
-*
-*
-*       FILL IN EACH FUNCTIONAL TEST BELOW COMPLETELY
-*       -----[Keep the tests in the same order!]-----
-*       (if additional are added, keep them at the very end!)
-*/
 
 var chaiHttp = require('chai-http');
 var chai = require('chai');
@@ -14,17 +7,17 @@ var server = require('../server');
 chai.use(chaiHttp);
 
 
-suite('Functional Tests', function() {
+describe('Functional Tests', function() {
 
   var id1; // first thread -> delete -> first reply -> delete
   var id2; // second thread
   var id3; // second reply
   
-  suite('API ROUTING FOR /api/threads/:board', function() {
+  describe('API ROUTING FOR /api/threads/:board', function() {
     
-    suite('POST', function() {
+    describe('POST', function() {
       
-      test('New thread', function(done) {
+      it('New thread', function(done) {
         chai.request(server)
           .post('/api/threads/:board')
           .send({
@@ -37,7 +30,7 @@ suite('Functional Tests', function() {
             done();
           });
       });
-      test('New thread', function(done) {
+      it('New thread', function(done) {
         chai.request(server)
           .post('/api/threads/:board')
           .send({
@@ -53,9 +46,9 @@ suite('Functional Tests', function() {
       
     });
     
-    suite('GET', function() {
+    describe('GET', function() {
       
-      test('Get thread', function(done) {
+      it('Get thread', function(done) {
         chai.request(server)
           .get('/api/threads/general')
           .end(function(err, res){
@@ -79,9 +72,9 @@ suite('Functional Tests', function() {
       
     });
 
-    suite('DELETE', function() {
+    describe('DELETE', function() {
       
-      test('Delete thread', function(done) {
+      it('Delete thread', function(done) {
         chai.request(server)
           .delete('/api/threads/:board')
           .send({
@@ -98,9 +91,9 @@ suite('Functional Tests', function() {
       
     });
     
-    suite('PUT', function() {
+    describe('PUT', function() {
       
-      test('Report thread', function(done) {
+      it('Report thread', function(done) {
         chai.request(server)
           .put('/api/threads/:board')
           .send({
@@ -119,11 +112,11 @@ suite('Functional Tests', function() {
 
   });
 
-  suite('API ROUTING FOR /api/replies/:board', function() {
+  describe('API ROUTING FOR /api/replies/:board', function() {
     
-    suite('POST', function() {
+    describe('POST', function() {
       
-      test('New reply', function(done) {
+      it('New reply', function(done) {
         chai.request(server)
           .post('/api/replies/:board')
           .send({
@@ -137,7 +130,7 @@ suite('Functional Tests', function() {
             done();
           });
       });
-      test('New reply', function(done) {
+      it('New reply', function(done) {
         chai.request(server)
           .post('/api/replies/:board')
           .send({
@@ -154,9 +147,9 @@ suite('Functional Tests', function() {
       
     });
     
-    suite('GET', function() {
+    describe('GET', function() {
       
-      test('Get thread with replies', function(done) {
+      it('Get thread with replies', function(done) {
         chai.request(server)
           .get('/api/replies/general')
           .query({thread_id: id2})
@@ -178,9 +171,9 @@ suite('Functional Tests', function() {
       
     });
 
-    suite('DELETE', function() {
+    describe('DELETE', function() {
       
-      test('Delete reply', function(done) {
+      it('Delete reply', function(done) {
         chai.request(server)
           .delete('/api/replies/:board')
           .send({
@@ -198,9 +191,9 @@ suite('Functional Tests', function() {
       
     });
 
-    suite('PUT', function() {
+    describe('PUT', function() {
       
-      test('Report reply', function(done) {
+      it('Report reply', function(done) {
         chai.request(server)
           .put('/api/replies/:board')
           .send({
@@ -212,7 +205,7 @@ suite('Functional Tests', function() {
             assert.equal(res.status, 200);
             assert.equal(res.body, 'success');
             done();
-          });
+          }); 
       });
       
     })

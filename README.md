@@ -37,3 +37,34 @@ Most of them are still followed except for the need of inputing thread/reply_id'
 |----------------------|:----------------------------:|-----------------------:|-----------------------:|-------------------------------------:|
 | /api/threads/{board} |      list recent threads     |     create thread      |      report thread     |      delete thread with password     |
 | /api/replies/{board} |  show all replies on thread  | create reply on thread | report reply on thread | change reply to '[delete]' on thread |
+
+
+## How to use locally
+Make sure to have node and npm installed on your computer.
+
+Clone the repo.
+
+> <code>git clone https://github.com/Waymans/Anonymous-Message-Board folder-name</code>
+
+Change into the folder directory.
+
+> <code>cd folder-name</code>
+
+Install the dependencies.
+
+> <code>npm install</code>
+
+Once installed, start the server.
+
+> <code>node server</code>
+
+Open browser at:
+
+> <code>localhost:3000</code>
+
+(Optional) - To run tests:
+
+> <code>npm run tests</code>
+
+## Authors
+Waylan Hedine
